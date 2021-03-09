@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Generator</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/logo.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/417824116f.js" crossorigin="anonymous"></script>
+
+<body>
+
+<div class="container register">
+
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSdNpJzEBBuhVaLfA9sBc4Bol8p_oMxljsxfeKQaAO3myw8grg/formResponse"
+      target="_self"
+      id="bootstrapForm"
+      method="POST">
+    
+        <div class="title">
+            <a><h1><img src="images/logo.png">  Bill Generator</h1></a>
+        </div>
+    
+    <br>
+    <fieldset>
+        <legend for="">Email</legend>
+        <div class="form-group">
+            <input id="emailAddress" type="email" name="emailAddress" class="form-control" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "211243103" -->
+    <fieldset>
+        <legend for="211243103">Customer Name</legend>
+        <div class="form-group">
+            <input id="449594354" type="text" name="entry.449594354" class="form-control" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "1220634932" -->
+    <fieldset>
+        <legend for="1220634932">Mobile Number</legend>
+        <div class="form-group">
+            <input id="597348634" type="text" name="entry.597348634" class="form-control mobile" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "1049369565" -->
+    <fieldset>
+        <legend for="1049369565">Item 1 Amount</legend>
+        <div class="form-group">
+            <input id="850342538" type="text" name="entry.850342538" class="form-control prc" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "1323014205" -->
+    <fieldset>
+        <legend for="1323014205">Item 2 Amount</legend>
+        <div class="form-group">
+            <input id="154253253" type="text" name="entry.154253253" class="form-control prc" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "1526679986" -->
+    <fieldset>
+        <legend for="1526679986">Item 3 Amount</legend>
+        <div class="form-group">
+            <input id="1014423354" type="text" name="entry.1014423354" class="form-control prc" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "99408653" -->
+    <fieldset>
+        <legend for="99408653">Item 4 Amount</legend>
+        <div class="form-group">
+            <input id="1155921760" type="text" name="entry.1155921760" class="form-control prc" required>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "887885771" -->
+    <fieldset>
+        <legend for="887885771">Item 5 Amount</legend>
+        <div class="form-group">
+            <input id="1445813826" type="text" name="entry.1445813826" class="form-control prc" required>
+        </div>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <div class="form-group sum">
+            <label><b> Total :</b></label>
+            <div class="result">
+               <output id="result"></output>
+            </div>
+        </div>
+    </fieldset>
+ 
+    <fieldset>
+        <legend for="1932099658">Amount Paid</legend>
+        <div class="form-group">
+            <input id="1502598038" type="text" name="entry.1502598038" class="form-control total" required>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="fvv" value="1">
+    <input type="hidden" name="fbzx" value="3170491368393415194">
+
+    <input type="hidden" name="pageHistory" value="0">
+
+    <br>
+    <input class="btn btn-primary" type="submit" value="Submit">
+    <input class="btn btn-primary" type="reset" value="Reset">
+
+    <br>
+
+    <br>
+
+</form>
+
+
+</div>
+</body>
+<footer>
+    <span>Created By <a href="mailto:chetan.kandarkar99@gmail.com">Chetan Kandarkar</a> | <span class="far fa-copyright"></span> 2021 </span>
+</footer>
+
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+
+<script src="jquery.min.js"></script>
+
+<script>
+    $('.form-group').on('input','.prc',function(){
+        var totalSum = 0;
+        $('.form-group .prc').each(function(){
+            var inputVal = $(this).val();
+            if($.isNumeric(inputVal)){
+                totalSum += parseFloat(inputVal);
+            }
+        });
+        $('#result').text(totalSum);
+    });
+</script>
+
+<script>
+$('#bootstrapForm').submit(function (event) {
+    event.preventDefault()
+    var extraData = {}
+    $('#bootstrapForm').ajaxSubmit({
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+            // Submit of form should be successful but JSONP callback will fail because Google Forms
+            // does not support it, so this is handled as a failure.
+            alert('Data Submitted. Thanks.')
+            // You can also redirect the user to a custom thank-you page:
+            // window.location = 'http://www.mydomain.com/thankyoupage.html'
+        }
+    })
+})
+</script>
